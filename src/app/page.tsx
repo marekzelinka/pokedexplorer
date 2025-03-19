@@ -1,7 +1,17 @@
-export default function Home() {
+import { PokemonWrapper } from "@/components/pokemon-wrapper";
+import { fetchPokemonList } from "@/lib/pokemon";
+
+export default async function Home() {
+  const pokemons = await fetchPokemonList();
+
   return (
-    <div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-[family-name:var(--font-geist-sans)] sm:p-20">
-      Pokedexplorer
+    <div className="min-h-screen bg-gradient-to-b from-red-500 to-red-600">
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="mb-8 text-center text-4xl font-bold text-white md:text-6xl">
+          PokédExplorer
+        </h1>
+        <PokemonWrapper pokemons={pokemons} />
+      </div>
     </div>
   );
 }
